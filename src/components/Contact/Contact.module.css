@@ -15,9 +15,51 @@
 
 .contact-item {
   display: block;
-  width: 320px;
-  min-width: 300px;
+  width: 360px;
+  min-width: 320px;
   border: 1px solid darkgrey;
   border-radius: 8px;
   padding: 8px;
+}
+
+.container-btn {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
+  gap: 4px;
+}
+
+/* Modal */
+.modal {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  place-items: center;
+}
+
+.modal p {
+  margin: 0.5rem 0;
+}
+
+.modalButton {
+  padding: 0.5rem 1rem;
+  margin-right: 0.5rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #a35c5c;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.modalButton:hover {
+  background-color: #a35c5c;
 }

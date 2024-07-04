@@ -1,19 +1,25 @@
+.title {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
 .form {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 8px;
 
   width: 300px;
   border: 1px Solid gray;
   border-radius: 8px;
+  margin: 0 auto;
   padding: 8px;
 }
 
 input {
-  padding: 10px 10px 10px 10px;
+  box-sizing: border-box;
   border: 1px Solid gray;
   border-radius: 4px;
-  box-sizing: border-box;
 }
 
 input[type="text"] {
@@ -26,4 +32,10 @@ input[type="text"] {
 .error {
   color: red;
   font-weight: 700;
+}
+
+.buttons {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
 }

@@ -1,17 +1,21 @@
 import { useId } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import {
-  changeFilterQuery,
-  selectFilterQuery,
-} from "/src/redux/filterSlice.js";
+import { changeFilterQuery } from "../../redux/filter/slice";
+import { selectFilterQuery } from "../../redux/filter/selectors";
 import { FaSearch, FaTimes } from "react-icons/fa";
 
 import css from "./SearchBox.module.css";
 import "./SearchWithClear.css";
 
+import {
+  selectContacts,
+  selectContactsCount,
+} from "../../redux/contacts/selectors";
+
 const SearchBox = () => {
   const dispatch = useDispatch();
+  const contacts = useSelector(selectContacts);
 
   const handleFilterQuery = (e) => {
     const query = e.target.value;
@@ -23,6 +27,7 @@ const SearchBox = () => {
   };
 
   const query = useSelector(selectFilterQuery);
+  const contactItems = useSelector(selectContactsCount);
 
   const serarchTextid = `searchTextId:${useId()}`;
   return (
@@ -44,6 +49,9 @@ const SearchBox = () => {
           )}
         </div>
       </form>
+      <p>
+        <b>contacts:</b> ({contacts?.length}) of {contactItems}
+      </p>
     </>
   );
 };

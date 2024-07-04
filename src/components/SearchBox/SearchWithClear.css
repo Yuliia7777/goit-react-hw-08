@@ -1,16 +1,15 @@
 .search-container {
   position: relative;
   width: 300px;
-  margin: 0 auto; /* Center the container */
+  margin: 0 auto;
 }
 
 .icon {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  color: rgb(174, 173, 173);
+  color: gray;
   cursor: pointer;
-  /* z-index: 9; */
 }
 
 .search-icon {
@@ -23,7 +22,7 @@
 
 .search-input {
   width: 100%;
-  padding: 10px 10px 10px 30px;
-  padding-right: 30px; /* Add padding to avoid text overlap with clear icon */
   box-sizing: border-box;
+  padding: 10px 10px 10px 30px;
+  padding-right: 30px;
 }

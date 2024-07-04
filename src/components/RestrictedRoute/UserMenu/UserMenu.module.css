@@ -1,0 +1,11 @@
+.logout {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.user-name {
+  font-weight: 700;
+  color: rgb(171, 210, 30);
+}

@@ -1,24 +1,40 @@
+import { useState } from "react";
 import { useDispatch } from "react-redux";
-//import { deleteContact } from "../../redux/contactsSlice";
-import { deleteContact } from "../../redux/contactsOps";
+import { useNavigate } from "react-router-dom";
+import { deleteContact } from "../../redux/contacts/operations";
 
 import { FaAddressCard } from "react-icons/fa";
 import { FaPhoneAlt } from "react-icons/fa";
 import { FaUser } from "react-icons/fa";
-import { FaBolt } from "react-icons/fa";
-import { format } from "date-fns";
+// import { FaBolt } from "react-icons/fa";
+// import toast from "react-hot-toast";
 
 import css from "./Contact.module.css";
 
 const Contact = ({ data }) => {
   const dispatch = useDispatch();
-  const { id, name, number, dateTimeStamp } = data;
-  let date = "";
-  if (dateTimeStamp) {
-    date = format(new Date(dateTimeStamp), "yyyy-MM-dd HH:mm:ss");
-  }
+  const navigate = useNavigate();
+  const { id, name, number } = data;
+
+  const [showModal, setShowModal] = useState(false);
+
+  const handleEdit = () => {
+    navigate(`/contact/${id}`);
+  };
+  const openModal = () => {
+    setShowModal(true);
+  };
+  const closeModal = () => {
+    setShowModal(false);
+  };
+
+  const handleDelete = () => {
+    dispatch(deleteContact(id));
+    closeModal();
+  };
+
   return (
-    <li key={id} className={css["contact-item"]}>
+    <>
       <div className={css.container}>
         <div>
           <p className={css.id}>
@@ -39,20 +55,30 @@ const Contact = ({ data }) => {
             </span>
             {number}
           </p>
-          {dateTimeStamp && (
-            <p className={css.text}>
-              <span className={css.icon}>
-                <FaBolt />
-              </span>
-              {date}
-            </p>
-          )}
         </div>
-        <button className={css.btn} onClick={() => dispatch(deleteContact(id))}>
-          Delete
-        </button>
+        <div className={css["container-btn"]}>
+          <button className={css.btn} onClick={() => handleEdit(data)}>
+            Edit
+          </button>
+          <button className={css.btn} onClick={openModal}>
+            Delete
+          </button>
+        </div>
       </div>
-    </li>
+      {showModal && (
+        <div className={css.modal}>
+          <p>Are you sure you want to delete this contact?</p>
+          <div>
+            <button className={css.modalButton} onClick={handleDelete}>
+              Yes
+            </button>
+            <button className={css.modalButton} onClick={closeModal}>
+              No
+            </button>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

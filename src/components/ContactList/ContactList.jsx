@@ -1,23 +1,23 @@
-import { useSelector } from "react-redux";
-import { selectContacts, selectContactsCount } from "../../redux/contactsSlice";
-import css from "./Contactlist.module.css";
 import Contact from "../Contact/Contact";
+import { useSelector } from "react-redux";
+import { selectContacts } from "../../redux/contacts/selectors";
+
+import css from "./Contactlist.module.css";
 
 const ContactList = () => {
   const contacts = useSelector(selectContacts);
-  const contactItems = useSelector(selectContactsCount);
 
   return (
     <>
-      <p>
-        <b>contacts:</b> ({contacts?.length}) of {contactItems}
-      </p>
-      <hr></hr>
-      <ul className={css["contact-list"]}>
-        {contacts?.map((item) => (
-          <Contact key={item.id} data={item} />
-        ))}
-      </ul>
+      <div name="contact-list" className={css["contact-list"]}>
+        <ul className={css["contact-list"]}>
+          {contacts?.map((contact) => (
+            <li key={contact.id} className={css["contact-item"]}>
+              <Contact key={contact.id} data={contact} />
+            </li>
+          ))}
+        </ul>
+      </div>
     </>
   );
 };
